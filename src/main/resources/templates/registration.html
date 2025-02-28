@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+</head>
+<body>
+<div>
+    <form method="POST" th:action="@{/registration}" th:object="${userForm}">
+        <h2>Регистрация</h2>
+
+        <!-- Username Field -->
+        <div>
+            <input type="text" th:field="*{username}" placeholder="Username" autofocus="true"/>
+            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color: red;"></div>
+            <span th:if="${usernameError}" th:text="${usernameError}" style="color: red;"></span>
+        </div>
+
+        <!-- Password Field -->
+        <div>
+            <input type="password" th:field="*{password}" placeholder="Password"/>
+        </div>
+
+        <!-- Confirm Password Field -->
+        <div>
+            <input type="password" th:field="*{passwordConfirm}" placeholder="Confirm your password"/>
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red;"></div>
+            <span th:if="${passwordError}" th:text="${passwordError}" style="color: red;"></span>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+
+    <!-- Link to the home page -->
+    <a href="/">Главная</a>
+</div>
+</body>
+</html>
